@@ -26,19 +26,20 @@ class WeatherListViewModel: ObservableObject {
     }
 
     func loadData()  {
-        if let url = Bundle.main.url(forResource: "Weather", withExtension: "json"){
-            if let data = try? Data(contentsOf: url){
-                if let weatherData = try? JSONDecoder().decode([Weather].self, from: data){
-                    self.weatherData = weatherData
-                }
-            }
+        if let url = Bundle.main.url(forResource: "Weather", withExtension: "json")
+        else {
+            return
         }
+            let data = try? Data(contentsOf: url)
+            let weatherData = try? JSONDecoder().decode([Weather].self, from: data)
+            self.weatherData = weatherData
+                
            
 
         
-        else {return}
-        guard let weatherData = try? JSONDecoder().decode([Weather].self, from: data)
-        else {return}
+        
+                
+        
         
 
         
