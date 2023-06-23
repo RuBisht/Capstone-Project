@@ -1,0 +1,114 @@
+[
+  {
+    "cityName": "New York",
+    "country": "United States",
+    "currentTemperature": 25,
+    "highestTemperature": 30,
+    "lowestTemperature": 20,
+    "weatherCondition": "Mid Rain"
+  },
+  {
+    "cityName": "London",
+    "country": "United Kingdom",
+    "currentTemperature": 20,
+    "highestTemperature": 22,
+    "lowestTemperature": 18,
+    "weatherCondition": "Mid Rain"
+  },
+  {
+    "cityName": "Tokyo",
+    "country": "Japan",
+    "currentTemperature": 28,
+    "highestTemperature": 32,
+    "lowestTemperature": 26,
+    "weatherCondition": "Tornado"
+  },
+  {
+    "cityName": "Paris",
+    "country": "France",
+    "currentTemperature": 23,
+    "highestTemperature": 27,
+    "lowestTemperature": 19,
+    "weatherCondition": "Fast Wind"
+  },
+  {
+    "cityName": "Sydney",
+    "country": "Australia",
+    "currentTemperature": 22,
+    "highestTemperature": 25,
+    "lowestTemperature": 20,
+    "weatherCondition": "Showers"
+  },
+  {
+    "cityName": "Dubai",
+    "country": "United Arab Emirates",
+    "currentTemperature": 38,
+    "highestTemperature": 42,
+    "lowestTemperature": 35,
+    "weatherCondition": "Tornado"
+  },
+  {
+    "cityName": "Moscow",
+    "country": "Russia",
+    "currentTemperature": -5,
+    "highestTemperature": -2,
+    "lowestTemperature": -8,
+    "weatherCondition": "Fast Wind"
+  },
+  {
+    "cityName": "Rio de Janeiro",
+    "country": "Brazil",
+    "currentTemperature": 30,
+    "highestTemperature": 33,
+    "lowestTemperature": 27,
+    "weatherCondition": "Mid Rain"
+  },
+  {
+    "cityName": "Cape Town",
+    "country": "South Africa",
+    "currentTemperature": 18,
+    "highestTemperature": 22,
+    "lowestTemperature": 16,
+    "weatherCondition": "Mid Rain"
+  },
+  {
+    "cityName": "Mumbai",
+    "country": "India",
+    "currentTemperature": 31,
+    "highestTemperature": 35,
+    "lowestTemperature": 27,
+    "weatherCondition": "Tornado"
+  },
+  {
+    "cityName": "Berlin",
+    "country": "Germany",
+    "currentTemperature": 19,
+    "highestTemperature": 23,
+    "lowestTemperature": 16,
+    "weatherCondition": "Showers"
+  },
+  {
+    "cityName": "Beijing",
+    "country": "China",
+    "currentTemperature": 27,
+    "highestTemperature": 30,
+    "lowestTemperature": 23,
+    "weatherCondition": "Fast Wind"
+  },
+  {
+    "cityName": "Rome",
+    "country": "Italy",
+    "currentTemperature": 24,
+    "highestTemperature": 29,
+    "lowestTemperature": 21,
+    "weatherCondition": "Mid Rain"
+  },
+  {
+    "cityName": "Toronto",
+    "country": "Canada",
+    "currentTemperature": 21,
+    "highestTemperature": 24,
+    "lowestTemperature": 19,
+    "weatherCondition": "Showers"
+  }
+]
