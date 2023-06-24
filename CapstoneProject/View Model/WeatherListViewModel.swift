@@ -26,26 +26,35 @@ class WeatherListViewModel: ObservableObject {
     }
 
     func loadData()  {
-        if let url = Bundle.main.url(forResource: "Weather", withExtension: "json")
+        guard let url = Bundle.main.url(forResource: "Weather", withExtension: "json")
         else {
             return
         }
-            let data = try? Data(contentsOf: url)
-            let weatherData = try? JSONDecoder().decode([Weather].self, from: data)
-            self.weatherData = weatherData
+        
+        guard let data = try?Data(contentsOf: url)
+        else{
+            return
+        }
+        
+        guard let weatherData = try? JSONDecoder().decode([Weather].self, from: data)
+        else{
+            return
+        }
+            
+        self.weatherData = weatherData
                 
            
 
-        
-<<<<<<< HEAD
-        
-                
-        
-        
-
-        
-=======
->>>>>>> cc0e117 (Made the changes in WeatherCardViewModel)
+//
+//<<<<<<< HEAD
+//
+//
+//
+//
+//
+//
+//=======
+//>>>>>>> cc0e117 (Made the changes in WeatherCardViewModel)
     }
     
      func deleteMultipleWeatherRecord() {
