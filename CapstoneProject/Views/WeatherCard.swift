@@ -11,31 +11,31 @@ import SwiftUI
 
 struct WeatherCard: View {
     
-    @StateObject var WeatherCardViewDetails : WeatherCardViewModel
+    @StateObject var weatherCardViewModel : WeatherCardViewModel
     
     var body: some View {
-        NavigationLink(destination: DetailedView(WeatherDetailedView: WeatherCardViewModel(weatherCardDetails: WeatherCardViewDetails.WeatherCardDetails))){
+        NavigationLink(destination: DetailedView(weatherDetailedViewModel: WeatherCardViewModel(weatherCardDetails: weatherCardViewModel.WeatherCardDetails))){
             ZStack{
-                Image("Rectangle 1")
+                Image(rectangle)
                 
                 HStack{
                     VStack(alignment: .leading, spacing: 10){
-                        Text("\(WeatherCardViewDetails.WeatherCardDetails.currentTemperature.formatted())°")
+                        Text(weatherCardViewModel.getCurrentTemperature)
                             .fontWeight(.regular)
                             .font(.system(size:60 ))
                         
-                        Text("H:\(WeatherCardViewDetails.WeatherCardDetails.highestTemperature.formatted())° L:\(WeatherCardViewDetails.WeatherCardDetails.lowestTemperature.formatted())°")
+                        Text(weatherCardViewModel.getHighestAndLowestTemperature)
                             .fontWeight(.ultraLight)
                             .font(.system(size: 15))
                         
-                        Text("\(WeatherCardViewDetails.WeatherCardDetails.cityName), \(WeatherCardViewDetails.WeatherCardDetails.country)")
+                        Text(weatherCardViewModel.getLocation)
                             .font(.system(size: 15))
                     }
                     Spacer()
                     VStack(alignment: .trailing, spacing:7 ){
-                        Image(WeatherCardViewDetails.WeatherCardDetails.weatherCondition)
+                        Image(weatherCardViewModel.getWeatherCondition)
                         
-                        Text(WeatherCardViewDetails.WeatherCardDetails.weatherCondition)
+                        Text(weatherCardViewModel.getWeatherCondition)
                             .font(.system(size: 13))
                             .padding(.trailing,35.0)
                         
@@ -56,7 +56,7 @@ struct WeatherCard: View {
 struct WeatherCard_Previews: PreviewProvider {
     static var previews: some View {
         
-        WeatherCard(WeatherCardViewDetails : WeatherCardViewModel(weatherCardDetails: Weather(cityName: "Coimbatore", country: "India", currentTemperature: 19, highestTemperature: 24, lowestTemperature: 18, weatherCondition: "Mid Rain"
+        WeatherCard(weatherCardViewModel : WeatherCardViewModel(weatherCardDetails: Weather(cityName: "Coimbatore", country: "India", currentTemperature: 19, highestTemperature: 24, lowestTemperature: 18, weatherCondition: "Mid Rain"
                              )))
     }
 }

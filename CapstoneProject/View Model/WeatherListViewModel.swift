@@ -37,15 +37,18 @@ class WeatherListViewModel: ObservableObject {
            
 
         
+<<<<<<< HEAD
         
                 
         
         
 
         
+=======
+>>>>>>> cc0e117 (Made the changes in WeatherCardViewModel)
     }
     
-     func deletemultipleweatherRecord() {
+     func deleteMultipleWeatherRecord() {
         for id in selectedItems {
             if let index = weatherData.lastIndex(where: { $0.id == id }) {
                 weatherData.remove(at: index)
@@ -63,7 +66,7 @@ class WeatherListViewModel: ObservableObject {
         isRefreshing = false
     }
     
-    func deleteweatherRecord(offsets: IndexSet) {
+    func deleteWeatherRecord(offsets: IndexSet) {
         weatherData.remove(atOffsets: offsets)
     }
 

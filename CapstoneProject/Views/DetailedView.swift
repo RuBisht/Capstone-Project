@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DetailedView: View {
-    let WeatherDetailedView : WeatherCardViewModel
+    let weatherDetailedViewModel : WeatherCardViewModel
     var body: some View {
         ZStack {
             
-            Image("photo-1436891620584-47fd0e565afb 1")
+            Image(detailedViewBackground)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .edgesIgnoringSafeArea(.top)
@@ -20,10 +20,10 @@ struct DetailedView: View {
             
             VStack{
                 VStack(spacing: -15){
-                    Text(WeatherDetailedView.WeatherCardDetails.cityName)
+                    Text(weatherDetailedViewModel.getCityName)
                         .font(.system(size: 34))
                     
-                    Text("\(WeatherDetailedView.WeatherCardDetails.currentTemperature.formatted())°")
+                    Text(weatherDetailedViewModel.getCurrentTemperature)
                         .font(.system(size: 96))
                         .fontWeight(.light)
                         .padding(.leading)
@@ -31,13 +31,13 @@ struct DetailedView: View {
                     
                     VStack{
                         
-                        Text("\(WeatherDetailedView.WeatherCardDetails.weatherCondition)")
+                        Text(weatherDetailedViewModel.getWeatherCondition)
                             .fontWeight(.ultraLight)
-                        Text("H:\(WeatherDetailedView.WeatherCardDetails.highestTemperature.formatted())° L:\(WeatherDetailedView.WeatherCardDetails.lowestTemperature.formatted())°")
+                        Text(weatherDetailedViewModel.getHighestAndLowestTemperature)
                     }.font(.system(size: 20))
                 }.offset(y:-50)
                     .foregroundColor(.white)
-                Image("House 4 3")
+                Image(house)
                     .edgesIgnoringSafeArea(.all)
                 
                 
@@ -48,6 +48,6 @@ struct DetailedView: View {
 
 struct DetailedView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedView(WeatherDetailedView: WeatherCardViewModel(weatherCardDetails: Weather(cityName: "Coimbatore", country: "India", currentTemperature: 19, highestTemperature: 24, lowestTemperature: 18, weatherCondition: "Mid Rain")))
+        DetailedView(weatherDetailedViewModel: WeatherCardViewModel(weatherCardDetails: Weather(cityName: "Coimbatore", country: "India", currentTemperature: 19, highestTemperature: 24, lowestTemperature: 18, weatherCondition: "Mid Rain")))
     }
 }

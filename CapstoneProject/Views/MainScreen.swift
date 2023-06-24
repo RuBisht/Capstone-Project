@@ -13,7 +13,7 @@ struct MainScreen: View {
 
     @ObservedObject private var ListViewModel = WeatherListViewModel()
     
-   let MainScreenBackgroundGradient = LinearGradient(gradient: Gradient(colors: [Color.color1, Color.color2]), startPoint: .top, endPoint: .bottom)
+
     
     @Environment(\.editMode) var editMode
     
@@ -32,12 +32,12 @@ struct MainScreen: View {
                 
                 List(ListViewModel.weatherData,selection: $ListViewModel.selectedItems){_ in
                     ForEach(ListViewModel.filteredItems){weatherData in
-                        WeatherCard(WeatherCardViewDetails: WeatherCardViewModel(weatherCardDetails: weatherData))
+                        WeatherCard(weatherCardViewModel: WeatherCardViewModel(weatherCardDetails: weatherData))
                                     .listRowBackground(Color.clear)
                                     .frame(width: 338, height: 185)
                                     .padding(.leading)
                     }
-                    .onDelete (perform: ListViewModel.deleteweatherRecord)
+                    .onDelete (perform: ListViewModel.deleteWeatherRecord)
                             .deleteDisabled(true)
                     
                 }.listStyle(.plain)
@@ -55,12 +55,12 @@ struct MainScreen: View {
                             Menu {
                                 Button("Refresh", action: ListViewModel.performRefresh)
                                 Button("Delete", action: {
-                                    ListViewModel.deletemultipleweatherRecord()
+                                    ListViewModel.deleteMultipleWeatherRecord()
                             
                                 })
 
                             } label: {
-                                Image("dots")
+                                Image(dots)
                                     .foregroundColor(.white)
                             }
                         }
@@ -68,7 +68,7 @@ struct MainScreen: View {
    
             }
             .background(
-                MainScreenBackgroundGradient)
+                mainScreenBackgroundGradient)
 
             .refreshable {
                 ListViewModel.performRefresh()
