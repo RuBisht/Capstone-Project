@@ -11,18 +11,10 @@ import SwiftUI
 
 struct MainScreen: View {
 
-    @ObservedObject private var ListViewModel = WeatherListViewModel()
-    
-
-    
-    @Environment(\.editMode) var editMode
-    
+    @ObservedObject var ListViewModel = WeatherListViewModel()
    
-    
+    @Environment(\.editMode) var editMode
 
-    
-    
-    
     var body: some View {
         
         NavigationView{
@@ -45,7 +37,7 @@ struct MainScreen: View {
       
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading){
-                        Text("Weather")
+                        Text(weather)
                             .foregroundColor(.white)
                             .font(.system(size: 30))
                     }
@@ -53,8 +45,8 @@ struct MainScreen: View {
                         EditButton()
                             .buttonStyle(CustomEditButtonStyle())
                             Menu {
-                                Button("Refresh", action: ListViewModel.performRefresh)
-                                Button("Delete", action: {
+                                Button(refresh, action: ListViewModel.performRefresh)
+                                Button(delete, action: {
                                     ListViewModel.deleteMultipleWeatherRecord()
                             
                                 })

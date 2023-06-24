@@ -1,5 +1,5 @@
 //
-//  Variables.swift
+//  Constants.swift
 //  CapstoneProject
 //
 //  Created by Rupali Bisht on 23/06/23.
@@ -13,3 +13,6 @@ let rectangle = "Rectangle 1"
 let detailedViewBackground = "photo-1436891620584-47fd0e565afb 1"
 let house = "House 4 3"
 let dots = "dots"
+let refresh = "Refresh"
+let delete = "Delete"
+let weather = "Weather"

@@ -11,7 +11,7 @@ import SwiftUI
 
 struct WeatherCard: View {
     
-    @StateObject var weatherCardViewModel : WeatherCardViewModel
+    @ObservedObject var weatherCardViewModel : WeatherCardViewModel
     
     var body: some View {
         NavigationLink(destination: DetailedView(weatherDetailedViewModel: WeatherCardViewModel(weatherCardDetails: weatherCardViewModel.WeatherCardDetails))){

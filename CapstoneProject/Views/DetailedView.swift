@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailedView: View {
-    let weatherDetailedViewModel : WeatherCardViewModel
+    @StateObject var weatherDetailedViewModel : WeatherCardViewModel
     var body: some View {
         ZStack {
             

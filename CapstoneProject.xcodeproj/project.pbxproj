@@ -20,7 +20,7 @@
 		78BBB9762A454D05004015C7 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB9752A454D05004015C7 /* CustomSearchBar.swift */; };
 		78BBB9782A454D21004015C7 /* CustomEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB9772A454D21004015C7 /* CustomEditButton.swift */; };
 		78BBB97C2A456554004015C7 /* WeatherCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB97B2A456554004015C7 /* WeatherCardViewModel.swift */; };
-		78BBB9812A45BD98004015C7 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB9802A45BD98004015C7 /* Variables.swift */; };
+		78BBB9812A45BD98004015C7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBB9802A45BD98004015C7 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,7 @@
 		78BBB9752A454D05004015C7 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		78BBB9772A454D21004015C7 /* CustomEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditButton.swift; sourceTree = "<group>"; };
 		78BBB97B2A456554004015C7 /* WeatherCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardViewModel.swift; sourceTree = "<group>"; };
-		78BBB9802A45BD98004015C7 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
+		78BBB9802A45BD98004015C7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +140,7 @@
 		78BBB97F2A45BD80004015C7 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				78BBB9802A45BD98004015C7 /* Variables.swift */,
+				78BBB9802A45BD98004015C7 /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -223,7 +223,7 @@
 				78BBB97C2A456554004015C7 /* WeatherCardViewModel.swift in Sources */,
 				78BBB95B2A452995004015C7 /* WeatherCard.swift in Sources */,
 				78BBB9762A454D05004015C7 /* CustomSearchBar.swift in Sources */,
-				78BBB9812A45BD98004015C7 /* Variables.swift in Sources */,
+				78BBB9812A45BD98004015C7 /* Constants.swift in Sources */,
 				78BBB95F2A4529DA004015C7 /* WeatherData.swift in Sources */,
 				78BBB9462A45285B004015C7 /* CapstoneProjectApp.swift in Sources */,
 				78BBB9732A454CC8004015C7 /* Extension.swift in Sources */,
