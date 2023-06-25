@@ -13,7 +13,7 @@ struct MainScreen: View {
 
     @ObservedObject var ListViewModel = WeatherListViewModel()
    
-    @Environment(\.editMode) var editMode
+    @State var editMode: EditMode = .inactive
 
     var body: some View {
         
@@ -22,7 +22,7 @@ struct MainScreen: View {
                 CustomSearchBar(searchText: $ListViewModel.searchText, prompt: "Search for a city")
                     .padding()
                 
-                List(ListViewModel.weatherData,selection: $ListViewModel.selectedItems){_ in
+                List(selection: $ListViewModel.selectedItems){
                     ForEach(ListViewModel.filteredItems){weatherData in
                         WeatherCard(weatherCardViewModel: WeatherCardViewModel(weatherCardDetails: weatherData))
                                     .listRowBackground(Color.clear)
@@ -32,7 +32,8 @@ struct MainScreen: View {
                     .onDelete (perform: ListViewModel.deleteWeatherRecord)
                             .deleteDisabled(true)
                     
-                }.listStyle(.plain)
+                }.environment(\.editMode, $editMode)
+                .listStyle(.plain)
                 .scrollContentBackground(.hidden)
       
                 .toolbar {
@@ -42,29 +43,37 @@ struct MainScreen: View {
                             .font(.system(size: 30))
                     }
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        EditButton()
-                            .buttonStyle(CustomEditButtonStyle())
-                            Menu {
-                                Button(refresh, action: ListViewModel.performRefresh)
-                                Button(delete, action: {
-                                    ListViewModel.deleteMultipleWeatherRecord()
+                        Button(action: {
+                            ListViewModel.selectedItems = []
+                            editMode = editMode == .active ? .inactive : .active
+                        }, label: {
+                            Image(systemName: "highlighter")
+                                .font(.system(size: 20))
+                                .foregroundColor(.white)
+                        })
                             
+                            Menu {
+                                Button(refresh, action: {
+                                        ListViewModel.performRefresh()
+                                        editMode = .inactive
+                                    
+                                })
+                                Button(delete,action: {
+                                        ListViewModel.deleteMultipleWeatherRecord()
+                                        editMode = .inactive
                                 })
 
                             } label: {
-                                Image(dots)
+                                Image("dots")
                                     .foregroundColor(.white)
                             }
                         }
+
                 }
-   
             }
             .background(
                 mainScreenBackgroundGradient)
 
-            .refreshable {
-                ListViewModel.performRefresh()
-            }
         }
         
     }

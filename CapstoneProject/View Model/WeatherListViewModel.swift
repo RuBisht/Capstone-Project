@@ -31,7 +31,7 @@ class WeatherListViewModel: ObservableObject {
             return
         }
         
-        guard let data = try?Data(contentsOf: url)
+        guard let data = try? Data(contentsOf: url)
         else{
             return
         }
