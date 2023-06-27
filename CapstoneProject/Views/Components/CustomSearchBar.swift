@@ -9,16 +9,17 @@ import SwiftUI
 
 struct CustomSearchBar: View {
     @Binding var searchText: String
+    let constants = Constants()
     
     var prompt: String
   
     var body: some View {
         HStack {
-            Image(systemName: "magnifyingglass")
+            Image(systemName: constants.magnifyingglass)
                 .foregroundColor(.gray)
             
             TextField(prompt, text: $searchText)
-                .foregroundColor(.black) // Change text color here
+                .foregroundColor(.white) 
                 
         }
         .padding(8)

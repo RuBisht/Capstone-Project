@@ -9,8 +9,7 @@ import Foundation
 
 class WeatherListViewModel: ObservableObject {
     @Published var weatherData = [Weather]()
-     var selectedItems = Set<UUID>()
-     var isRefreshing = false
+    var selectedItems = Set<UUID>()
     @Published var searchText = ""
     
     init(){
@@ -26,35 +25,16 @@ class WeatherListViewModel: ObservableObject {
     }
 
     func loadData()  {
-        guard let url = Bundle.main.url(forResource: "Weather", withExtension: "json")
+        guard let url = Bundle.main.url(forResource: "Weather", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let weatherData = try? JSONDecoder().decode([Weather].self, from: data)
         else {
-            return
-        }
-        
-        guard let data = try? Data(contentsOf: url)
-        else{
-            return
-        }
-        
-        guard let weatherData = try? JSONDecoder().decode([Weather].self, from: data)
-        else{
             return
         }
             
         self.weatherData = weatherData
                 
            
-
-//
-//<<<<<<< HEAD
-//
-//
-//
-//
-//
-//
-//=======
-//>>>>>>> cc0e117 (Made the changes in WeatherCardViewModel)
     }
     
      func deleteMultipleWeatherRecord() {
@@ -66,17 +46,10 @@ class WeatherListViewModel: ObservableObject {
         selectedItems = Set<UUID>()
         
     }
-    
-    func performRefresh() {
-        isRefreshing = true
-        
-        loadData()
-        
-        isRefreshing = false
-    }
-    
-    func deleteWeatherRecord(offsets: IndexSet) {
-        weatherData.remove(atOffsets: offsets)
+    func deleteWeatherRecord(at index: IndexSet) {
+        if let currentIndex = index.first {
+            weatherData.remove(at: currentIndex)
+        }
     }
 
 

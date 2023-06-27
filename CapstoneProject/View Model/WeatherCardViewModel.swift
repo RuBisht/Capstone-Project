@@ -6,31 +6,27 @@
 //
 
 import Foundation
-class WeatherCardViewModel: ObservableObject {
+struct WeatherCardViewModel{
     
-    @Published var WeatherCardDetails : Weather
-  
-    init(weatherCardDetails: Weather){
-        self.WeatherCardDetails = weatherCardDetails
+    var weatherCardDetails : Weather
+    
+    func getLocation() -> String {
+         return "\(weatherCardDetails.cityName), \(weatherCardDetails.country)"
     }
     
-    var getLocation:String {
-         return "\(WeatherCardDetails.cityName), \(WeatherCardDetails.country)"
+    func getWeatherCondition() -> String {
+        return "\(weatherCardDetails.weatherCondition)"
     }
     
-    var getWeatherCondition:String {
-        return "\(WeatherCardDetails.weatherCondition)"
+    func getCurrentTemperature() -> String {
+        return "\(weatherCardDetails.currentTemperature)°"
     }
     
-    var getCurrentTemperature:String {
-        return "\(WeatherCardDetails.currentTemperature)°"
+    func getHighestAndLowestTemperature() -> String {
+        return "H:\(weatherCardDetails.highestTemperature)° L:\(weatherCardDetails.currentTemperature)°"
     }
     
-    var getHighestAndLowestTemperature:String {
-        return "H:\(WeatherCardDetails.highestTemperature)° L:\(WeatherCardDetails.currentTemperature)°"
-    }
-    
-    var getCityName:String {
-        return WeatherCardDetails.cityName
+    func getCityName() -> String {
+        return weatherCardDetails.cityName
     }
 }

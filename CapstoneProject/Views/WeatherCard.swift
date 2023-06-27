@@ -11,37 +11,37 @@ import SwiftUI
 
 struct WeatherCard: View {
     
-    @ObservedObject var weatherCardViewModel : WeatherCardViewModel
+    let weatherCardViewModel : WeatherCardViewModel
+    let constants = Constants()
     
     var body: some View {
-        NavigationLink(destination: DetailedView(weatherDetailedViewModel: WeatherCardViewModel(weatherCardDetails: weatherCardViewModel.WeatherCardDetails))){
+        NavigationLink(destination: DetailedView(weatherDetailedViewModel: WeatherCardViewModel(weatherCardDetails: weatherCardViewModel.weatherCardDetails))){
             ZStack{
-                Image(rectangle)
+                Image(constants.rectangle)
                 
                 HStack{
                     VStack(alignment: .leading, spacing: 10){
-                        Text(weatherCardViewModel.getCurrentTemperature)
+                        Text(weatherCardViewModel.getCurrentTemperature())
                             .fontWeight(.regular)
                             .font(.system(size:60 ))
                         
-                        Text(weatherCardViewModel.getHighestAndLowestTemperature)
+                        Text(weatherCardViewModel.getHighestAndLowestTemperature())
                             .fontWeight(.ultraLight)
                             .font(.system(size: 15))
                         
-                        Text(weatherCardViewModel.getLocation)
+                        Text(weatherCardViewModel.getLocation())
                             .font(.system(size: 15))
-                    }
-                    Spacer()
+                    }.padding(.horizontal, 20)
+    
                     VStack(alignment: .trailing, spacing:7 ){
-                        Image(weatherCardViewModel.getWeatherCondition)
+                        Image(weatherCardViewModel.getWeatherCondition())
                         
-                        Text(weatherCardViewModel.getWeatherCondition)
-                            .font(.system(size: 13))
+                        Text(weatherCardViewModel.getWeatherCondition())
+                            .font(.system(size: 15))
                             .padding(.trailing,35.0)
                         
-                    }.offset(y:-20)
-                    Spacer()
-                }.offset(x:30)
+                    }.padding(.bottom,50)
+                }
                 .foregroundColor(Color.white)
             }
             
@@ -49,7 +49,6 @@ struct WeatherCard: View {
         }
             
         .background(Color.clear)
-            .edgesIgnoringSafeArea(.all)
     }
 }
 

@@ -6,73 +6,35 @@
 //
 
 import SwiftUI
-
+import Foundation
 
 
 struct MainScreen: View {
 
-    @ObservedObject var ListViewModel = WeatherListViewModel()
-   
-    @State var editMode: EditMode = .inactive
-
+    @StateObject var weatherListViewModel = WeatherListViewModel()
+    let constants = Constants()
+    
+    @State private var editMode: EditMode = .inactive
     var body: some View {
         
         NavigationView{
-            VStack(spacing:-20){
-                CustomSearchBar(searchText: $ListViewModel.searchText, prompt: "Search for a city")
+            VStack{
+                CustomSearchBar(searchText: $weatherListViewModel.searchText, prompt: constants.searchprompt)
                     .padding()
                 
-                List(selection: $ListViewModel.selectedItems){
-                    ForEach(ListViewModel.filteredItems){weatherData in
-                        WeatherCard(weatherCardViewModel: WeatherCardViewModel(weatherCardDetails: weatherData))
-                                    .listRowBackground(Color.clear)
-                                    .frame(width: 338, height: 185)
-                                    .padding(.leading)
-                    }
-                    .onDelete (perform: ListViewModel.deleteWeatherRecord)
-                            .deleteDisabled(true)
+                WeatherList(listViewModel: weatherListViewModel)
+                
+                    .environment(\.editMode, $editMode)
+                        .listStyle(.plain)
+                
                     
-                }.environment(\.editMode, $editMode)
-                .listStyle(.plain)
-                .scrollContentBackground(.hidden)
-      
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading){
-                        Text(weather)
-                            .foregroundColor(.white)
-                            .font(.system(size: 30))
-                    }
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            ListViewModel.selectedItems = []
-                            editMode = editMode == .active ? .inactive : .active
-                        }, label: {
-                            Image(systemName: "highlighter")
-                                .font(.system(size: 20))
-                                .foregroundColor(.white)
-                        })
-                            
-                            Menu {
-                                Button(refresh, action: {
-                                        ListViewModel.performRefresh()
-                                        editMode = .inactive
-                                    
-                                })
-                                Button(delete,action: {
-                                        ListViewModel.deleteMultipleWeatherRecord()
-                                        editMode = .inactive
-                                })
-
-                            } label: {
-                                Image("dots")
-                                    .foregroundColor(.white)
-                            }
+                    .toolbar {
+                        CustomToolbar(weatherListViewModel: weatherListViewModel, editMode: $editMode, constants: constants)
                         }
 
-                }
             }
             .background(
-                mainScreenBackgroundGradient)
+                constants.mainScreenBackgroundGradient)
 
         }
         
@@ -85,3 +47,66 @@ struct MainScreen: View {
             MainScreen()
         }
     }
+
+// LIST SUBVIEW
+
+struct WeatherList: View {
+    @ObservedObject var listViewModel: WeatherListViewModel
+    
+    var body: some View {
+        
+        List(selection: $listViewModel.selectedItems){
+            ForEach(listViewModel.filteredItems){weatherData in
+                WeatherCard(weatherCardViewModel: WeatherCardViewModel(weatherCardDetails: weatherData))
+                    .listRowBackground(Color.clear)
+                    .frame(width: 338, height: 185)
+                    .padding(.leading)
+            }
+            .onDelete(perform: listViewModel.deleteWeatherRecord)
+            
+        }
+    }
+}
+
+// TOOLBAR
+
+struct CustomToolbar: ToolbarContent{
+    @ObservedObject var weatherListViewModel: WeatherListViewModel
+    @Binding var editMode: EditMode
+    let constants: Constants
+    var body: some ToolbarContent{
+        ToolbarItem(placement: .navigationBarLeading){
+            Text(constants.weather)
+                .foregroundColor(.white)
+                .font(.system(size: 30))
+        }
+    
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+            
+            Button(action: {
+                weatherListViewModel.selectedItems = []
+                editMode = editMode == .active ? .inactive : .active
+            }, label: {
+                Image(systemName: constants.highlighter )
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+            })
+            
+            Menu {
+                Button(constants.refresh, action: {
+                    weatherListViewModel.loadData()
+                    editMode = .inactive
+                    
+                })
+                Button(constants.delete,action: {
+                    weatherListViewModel.deleteMultipleWeatherRecord()
+                    editMode = .inactive
+                })
+                
+            } label: {
+                Image(constants.dots)
+                    .foregroundColor(.white)
+            }
+        }
+    }
+}

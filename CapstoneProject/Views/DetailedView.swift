@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct DetailedView: View {
-    @StateObject var weatherDetailedViewModel : WeatherCardViewModel
+    let weatherDetailedViewModel : WeatherCardViewModel
+    let constants = Constants()
+    
     var body: some View {
         ZStack {
             
-            Image(detailedViewBackground)
+            Image(constants.detailedViewBackground)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .edgesIgnoringSafeArea(.top)
+                .edgesIgnoringSafeArea(.all)
             
             
             VStack{
-                VStack(spacing: -15){
-                    Text(weatherDetailedViewModel.getCityName)
+                    Text(weatherDetailedViewModel.getCityName())
                         .font(.system(size: 34))
                     
-                    Text(weatherDetailedViewModel.getCurrentTemperature)
+                    Text(weatherDetailedViewModel.getCurrentTemperature())
                         .font(.system(size: 96))
                         .fontWeight(.light)
                         .padding(.leading)
@@ -31,17 +31,15 @@ struct DetailedView: View {
                     
                     VStack{
                         
-                        Text(weatherDetailedViewModel.getWeatherCondition)
+                        Text(weatherDetailedViewModel.getWeatherCondition())
                             .fontWeight(.ultraLight)
-                        Text(weatherDetailedViewModel.getHighestAndLowestTemperature)
+                        Text(weatherDetailedViewModel.getHighestAndLowestTemperature())
                     }.font(.system(size: 20))
-                }.offset(y:-50)
-                    .foregroundColor(.white)
-                Image(house)
-                    .edgesIgnoringSafeArea(.all)
+   
+                Image(constants.house)
                 
                 
-            }
+            }.foregroundColor(.white)
         }
     
     }}
