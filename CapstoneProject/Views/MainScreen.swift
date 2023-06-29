@@ -25,7 +25,6 @@ struct MainScreen: View {
                 WeatherList(listViewModel: weatherListViewModel)
                 
                     .environment(\.editMode, $editMode)
-                        .listStyle(.plain)
                 
                     
                     .toolbar {
@@ -57,14 +56,23 @@ struct WeatherList: View {
         
         List(selection: $listViewModel.selectedItems){
             ForEach(listViewModel.filteredItems){weatherData in
-                WeatherCard(weatherCardViewModel: WeatherCardViewModel(weatherCardDetails: weatherData))
-                    .listRowBackground(Color.clear)
-                    .frame(width: 338, height: 185)
-                    .padding(.leading)
+               if(editMode == .active){
+                    WeatherCard(weatherCardViewModel: WeatherCardViewModel(weatherCardDetails: weatherData)).deleteDisabled(true)
+                        .listRowBackground(Color.clear)
+                        .frame(width: 338, height: 185)
+                        .padding(.leading)
+                }
+                else{
+                    WeatherCard(weatherCardViewModel: WeatherCardViewModel(weatherCardDetails: weatherData))
+                        .listRowBackground(Color.clear)
+                        .frame(width: 338, height: 185)
+                        .padding(.leading)
+                }
+
             }
             .onDelete(perform: listViewModel.deleteWeatherRecord)
             
-        }
+        }.listStyle(.plain)
     }
 }
 
